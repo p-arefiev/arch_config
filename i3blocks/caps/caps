@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+caps_value=$(xset -q | grep Caps | sed 's/.*Caps Lock: //' | sed -e 's% 01:.*%%')
+echo $caps_value

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+numlock_value=$(xset -q | grep Caps | sed 's/.*Num Lock: //' | sed -e 's% 02:.*%%')
+echo $numlock_value
