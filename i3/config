@@ -30,7 +30,7 @@ set $ws5 "5: nope "
 set $ws6 "6:  "
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvtc
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -43,7 +43,7 @@ bindsym $mod+d exec --no-startup-id dmenu_recency
 ################################################################################################
 
 #exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
@@ -55,19 +55,11 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-# bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-# bindsym $mod+F2 exec firefox
-# bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
-# bindsym $mod+Shift+F3 exec pcmanfm_pkexec
-# bindsym $mod+t exec --no-startup-id pkill picom
-# bindsym $mod+Ctrl+t exec --no-startup-id picom -b
-# bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-# bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod+e --release exec --no-startup-id emacsclient -c
 
 # focus_follows_mouse no
 
@@ -75,7 +67,7 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+m focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -87,7 +79,7 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+m move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -214,8 +206,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    #bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym l exec --no-startup-id $HOME/lock.sh
+    bindsym l exec --no-startup-id $HOME/lock/lock.sh
     bindsym s exec --no-startup-id i3exit suspend, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
@@ -255,24 +246,16 @@ mode "resize" {
 ####Startup applications####
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id $HOME/lock.sh
+bindsym $mod+9 exec --no-startup-id $HOME/lock/lock.sh
 # Autostart applications
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-# exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id nm-applet
-# exec --no-startup-id xfce4-power-manager
-# exec --no-startup-id pamac-tray
-# exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --nor-startup-id conky -d
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker "$HOME/lock.sh"
-# exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
-exec --no-startup-id urxvt
-exec --no-startup-id setxkbmap -model pc104 -layout fr -variant ,mac  -option grp:alt_shift_toggle
+exec --no-startup-id nitrogen --restore; sleep 1; compton -f
+exec --no-startup-id xautolock -time 10 -locker "$HOME/lock/lock.sh"
+exec --no-startup-id nm-applet
+exec --no-startup-id urxvtd -q -o -f
+exec --no-startup-id emacs --daemon
+# Set a kb : but this does not work, kb set is made in zshrc
+# exec --no-startup-id setxkbmap -model pc104 -layout fr -variant ,mac  -option grp:alt_shift_toggle
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -299,30 +282,14 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	status_command		i3blocks -c $HOME/.config/i3blocks/config
-	position 		top
-	strip_workspace_numbers	yes
-	tray_output 		None
-	#separator_symbol	"|"
-	#workspace_buttons	yes
-    #colors {
-        #background #212121
-        #statusline #DDDDDD
-        #separator  #777777
-
-#			    border  backgr. text
-        #focused_workspace  #777777 #2E00AD #FFFFFF
-        #active_workspace   #212121 #212121 #FFFFFF
-        #inactive_workspace #212121 #212121 #86888C
-        #urgent_workspace   #2F343A #E65C00 #FFFFFF
-        #binding_mode       #2f343f #2C2C2C #F9FAF9
-    #}
+    status_command              i3blocks -c $HOME/.config/i3blocks/config
+    position                    top
+    strip_workspace_numbers     yes
+    tray_output                 None
 }
 
 # hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
-# Update numlock status to i3blocks
-#bindsym --release Num_lock exec pkill -SGIRTMIN+11 i3blocks
+# bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
