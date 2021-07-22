@@ -1,0 +1,74 @@
+#+TITLE: Org mode first hands in
+#+DESCRIPTION: Show case of all newbie fonctions
+#+AUTHOR: Pierre AREFIEV
+
+* Notes from org mode starting guide
+** Shortcuts
+o => adds new line and start insert mode
+A => append end of line
+$ => end of line
+C-a => beginning of line
+
+w => beginning of word
+e => end of word
+
+Y => yank from marker to EoL
+y => yank selected region
+
+v => start selection
+
+zc => fold
+zo => unfold
+zM => fold everything
+zR => unfold everything
+
+M-x => org-info
+SPC-i-s => yas-insert-snippet
+SHIFT-<left> / SHIFT-<right> => rolling item list works with all org rolling item (lists, heading ...)
+** Org shortcuts
+vae => select region
+vaR => select subtree w/ header
+dae => delete region
+daR => delete subtree
+yiR => yank subtree
+** Org modules
+SCHEDULED: <2021-07-23 ven. 09:00-09:30>
+SPC-m-h => org-toggle-headline
+SPC-m-d-s => org-schedule
+SPC-m-d-t => org time stamp
+SPC-o-A => open org agenda
+C-C-[ => add file to front of agenda
+SPC-m-l-l => org add link
+** Markers
++ Unordered list item 1
++ Unordered list item 2
+
++ Ordered list item 1
++ Ordered list item 2
+** Motion
+move left/down/up/right => h/j/k/l
+next/prev heading => gj/gk
+** Structure Editing
+Insert new heading after subtree => C-RET
+Promote/Demote heading => M-h/l
+Move heading with subtree up/down => M-k/j
+Move heading w/o subtree up/down => M-S-k/j
+** Checkbox [2/3] [%]
+Add preview in header : [/]
+Add preview in header in % : [%]
+- [ ] item 1
+- [X] item 2
+- [X] item 3
+** Tables
+*** Creating a table
+Move in cell forward/backward => TAB/S-TAB
+Make org table headline => SPC-m-b - or "|-TAB"
+Duplicate field in cell below => S-RET
+| ITEM 1 | ITEM 2 | ITEM 3 | ITEM 4 |
+|--------+--------+--------+--------|
+|        |        |        |        |
+*** Moving in tables
+Move current line down/up => M-j/k
+Move current column left/right => M-h/l
+Create/Delete new/current column => M-S-l/h
+Create/Delete new/current row => M-S-j/k
