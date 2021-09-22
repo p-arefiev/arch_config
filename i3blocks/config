@@ -25,20 +25,20 @@
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
 # Change $SCRIPT_DIR to the location of your scripts!
-command=~/.config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
+command=~/Documents/arch_config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
 # Youtube player
-[ytdl-mpv]
-markup=pango
-interval=once
-signal=4
+# [ytdl-mpv]
+# markup=pango
+# interval=once
+# signal=4
 
 # Weather indocator using openweather api
-[weather]
-instance=3014728
-interval=600
+# [weather]
+# instance=3014728
+# interval=600
 
 # Disk left space indicator
 #[disk]
@@ -64,16 +64,16 @@ label=
 interval=10
 
 # caps toggle indicator
-[caps]
-label=  
-interval=1
-min_width=  off
+# [caps]
+# label=
+# interval=1
+# min_width=  off
 
-# numlock indicator
-[numlock]
-label=  
-interval=10
-min_width=  off
+# # numlock indicator
+# [numlock]
+# label=
+# interval=10
+# min_width=  off
 
 # Battery indicator
 [batterybar]

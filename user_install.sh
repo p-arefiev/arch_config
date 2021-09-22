@@ -11,37 +11,46 @@ echo 'exec i3 &' >> ~/.xinitrc
 echo 'exec nitrogen --restore &' >> ~/.xinitrc
 
 # lightdm config
-rm -rf /etc/lightdm/
-ln -s $(HOME)/Documents/arch_config/lightdm /etc/lightdm
-
-# oh-my-zsh
-cd
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-rm -f .zshrc
-cd
-ln -s $(HOME)/Documents/arch_config/zsh/.zshrc .zshrc
+sudo systemctl enable lightdm.service
+sudo rm -rf /etc/lightdm/lightdm.conf
+sudo rm -rf /etc/lightdm/slick-greeter.conf
+sudo ln -s /home/$(whoami)/Documents/arch_config/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
+sudo ln -s /home/$(whoami)/Documents/arch_config/lightdm/slick-greeter.conf /etc/lightdm/slick-greeter.conf
+sudo mkdir /usr/share/backgrounds
+sudo ln -s /home/$(whoami)/Documents/arch_config/background/back.png /usr/share/backgrounds/lighdm_screen.jpg
 
 # yay
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
+cd ..
 rm -rf yay
 
-# environment variable
-echo 'export EDITOR=nano' >> ~/.zshrc
+# Add nerd-fonts
+yay -S nerd-fonts-complete i3-scrot nm-applet autojump > /dev/null
+echo 'Installing plugins ... '
+yay -S zsh-syntax-highlighting zsh-autosuggestions > /dev/null
+
+# Emacs doom install
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+/home/$(whoami).emacs.d/bin/doom install
 
 # git first time setup
 git config --global user.name $(whoami)
 git config --global user.email $(whoami)@$(hostname)
-git config --global code.editor nano
+git config --global url.ssh://github.com/.pushinsteadof=https://github.com/
+git config --global url.git@github.schneider-electric.com:.pushinsteadof=https://github.schneider-electric.com/
 
-# wallpaper setup
-cd ~/.config/
-mkdir nitrogen
-cd nitrogen
-echo '[xin_-1]' > bg-saved.cfg
-echo "file=/home/$(whoami)/Documents/arch_config/background/back.jpg" >> bg-saved.cfg
-echo 'mode=0' >> bg-saved.cfg
-echo 'bgcolor=#000000' >> bg-saved.cfg
+echo -n 'Creating all symlinks ...'
+rm /home/$(whoami)/.zshrc
+ln -s /home/$(whoami)/Documents/arch_config/zsh/.zshrc /home/$(whoami)/.zshrc
+rm /home/$(whoami)/.Xressources
+ln -s /home/$(whoami)/Documents/arch_config/urxvt/.Xressources /home/$(whoami)/.Xressources
+rm /home/$(whoami)/.config/i3/config
+ln -s /home/$(whoami)/Documents/arch_config/i3/config /home/$(whoami)/.config/i3/config
+ln -s /home/$(whoami)/Documents/arch_config/i3blocks /home/$(whoami)/.config/i3blocks
+echo 'done'
 
-echo 'Done'
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+find /home/$(whoami)/Documents -type f -print0 | xargs -0 dos2unix --

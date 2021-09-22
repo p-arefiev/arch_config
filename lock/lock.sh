@@ -6,9 +6,9 @@
 scrot /tmp/screen.png
 convert /tmp/screen.png -scale 5% -blur 0x4 -resize 2000% /tmp/screen.png
 
-if [[ -f $HOME/lock/lock.png ]]
+if [[ -f $HOME/Documents/arch_config/lock/lock.png ]]
 then
-	convert /tmp/screen.png $HOME/lock/lock.png -composite /tmp/screen.png
+	convert /tmp/screen.png $HOME/Documents/arch_config/lock/lock.png -composite /tmp/screen.png
 fi
 
 i3lock -e -n -i /tmp/screen.png \

@@ -26,10 +26,10 @@ set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4:  "
-set $ws6 "5:  "
+set $ws5 "5:  "
 
 # start a terminal
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -147,7 +147,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
 assign [class="Emacs"] $ws2
-#assign [class="URxvt"] $ws1
 
 # Open specific applications in floating mode
 for_window [title="i3_help"] floating enable sticky enable border normal
@@ -213,11 +212,10 @@ mode "resize" {
 bindsym $mod+9 exec --no-startup-id $HOME/Documents/arch_config/lock/lock.sh
 # Autostart applications
 # exec_always --no-startup-id fix_xcursor
-exec --no-startup-id nitrogen --restore; sleep 1; compton -f
 exec --no-startup-id xautolock -time 10 -locker "$HOME/Documents/arch_config/lock/lock.sh"
 exec --no-startup-id nm-applet
-exec --no-startup-id urxvtd -q -o -f
 exec --no-startup-id emacs --daemon
+exec --no-startup-id nitrogen --restore
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
