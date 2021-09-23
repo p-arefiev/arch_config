@@ -18,5 +18,4 @@
 
 returned_value=$(setxkbmap -query)
 layout=$(echo $returned_value | sed 's/.*layout: //' | sed -e 's% variant.*%%')
-variant=$(echo $returned_value | sed 's/.*variant: //' | sed -e 's% options.*%%')
-echo $layout-$variant
+echo $layout

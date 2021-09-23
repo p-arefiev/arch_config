@@ -29,22 +29,6 @@ command=~/Documents/arch_config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-# Youtube player
-# [ytdl-mpv]
-# markup=pango
-# interval=once
-# signal=4
-
-# Weather indocator using openweather api
-# [weather]
-# instance=3014728
-# interval=600
-
-# Disk left space indicator
-#[disk]
-#label=  
-#interval=10
-
 # Ram usage indicator
 [memory]
 label=  
@@ -63,31 +47,14 @@ interval=10
 label=  
 interval=10
 
-# caps toggle indicator
-# [caps]
-# label=
-# interval=1
-# min_width=  off
-
-# # numlock indicator
-# [numlock]
-# label=
-# interval=10
-# min_width=  off
-
-# Battery indicator
-[batterybar]
-label=
-interval=100
-
 # Keymap info
-#[key_layout]
-#label=
-#interval=10
+[key_layout]
+label=
+interval=10
 
 # Date Time
 [time]
-command=date '+  %H:%M %Y-%m-%d   '
+command=date '+%H:%M %Y-%m-%d   '
 interval=5
 
 
