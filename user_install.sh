@@ -1,4 +1,5 @@
 #!/bin/bash
+git config --global url.git@github.schneider-electric.com:.pushinsteadof=https://github.schneider-electric.com/
 
 # Run install.sh first or this will fail due to missing dependencies
 
