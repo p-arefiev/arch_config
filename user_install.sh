@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# xinitrc
-head -n -7 /etc/X11/xinit/xinitrc > /home/$(whoami)/.xinitrc
-#echo 'exec VBoxClient --display -d &' >> /home/$(whoami)/.xinitrc
-echo 'exec VBoxClient --clipboard -d &' >> /home/$(whoami)/.xinitrc
-echo 'exec VBoxClient --draganddrop -d &' >> /home/$(whoami)/.xinitrc
-echo 'exec VBoxClient --seamless -d &' >> /home/$(whoami)/.xinitrc
-echo 'exec VBoxClient --checkhostversion -d &' >> /home/$(whoami)/.xinitrc
-echo 'exec VBoxClient --vmsvga -d &' >> /home/$(whoami)/.xinitrc
-echo 'exec i3 &' >> /home/$(whoami)/.xinitrc
-echo 'exec nitrogen --restore &' >> /home/$(whoami)/.xinitrc
-
 # yay
 git clone https://aur.archlinux.org/yay.git
 cd yay
