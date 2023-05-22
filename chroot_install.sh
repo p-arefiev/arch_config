@@ -82,7 +82,7 @@ read -t 1 -n 1000000 discard      # discard previous input
 echo 'root:'$admin_passwd | chpasswd
 useradd -m -G wheel,vboxsf $user
 echo $user:$password | chpasswd
-sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
-echo 'Setting up user ... done'
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+echo 'Setting up user ... done' 
 
 echo 'Chroot ... Done'
