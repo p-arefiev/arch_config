@@ -1,7 +1,4 @@
 #!/bin/bash
-git config --global url.git@github.schneider-electric.com:.pushinsteadof=https://github.schneider-electric.com/
-
-# Run install.sh first or this will fail due to missing dependencies
 
 # xinitrc
 cd
@@ -27,12 +24,16 @@ makepkg -si
 cd ..
 rm -rf yay
 
-# Add nerd-fonts
-yay -S nerd-fonts-complete i3-scrot nm-applet autojump > /dev/null
-echo 'Installing plugins ... '
-yay -S zsh-syntax-highlighting zsh-autosuggestions > /dev/null
+# User pacman installs
+sudo pacman -S network-manager-applet
+
+# Yay installs
+yay -S nerd-fonts-git i3-scrot autojump 
+echo 'Installing oh my zsh plugins ... '
+yay -S zsh-syntax-highlighting zsh-autosuggestions 
 
 # Emacs doom install
+echo 'Installing DOOM (emacs) ... '
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 /home/$(whoami).emacs.d/bin/doom install
 
@@ -40,7 +41,6 @@ git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 git config --global user.name $(whoami)
 git config --global user.email $(whoami)@$(hostname)
 git config --global url.ssh://github.com/.pushinsteadof=https://github.com/
-git config --global url.git@github.schneider-electric.com:.pushinsteadof=https://github.schneider-electric.com/
 
 echo -n 'Creating all symlinks ...'
 rm /home/$(whoami)/.zshrc
