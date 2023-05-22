@@ -74,7 +74,7 @@ yay -S zsh-syntax-highlighting zsh-autosuggestions
 # Emacs doom install
 echo 'Installing DOOM (emacs) ... '
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-exec /home/$(whoami).emacs.d/bin/doom install
+./home/$(whoami).emacs.d/bin/doom install
 
 # git first time setup
 git config --global user.name $(whoami)
